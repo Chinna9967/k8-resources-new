@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: imgpullpolicy-sample
+spec:
+  containers:
+  - name: nginx
+    image: nginx:latest
+    imagePullPolicy: Always
+    resources:
+      requests: # softlimit
+        cpu: "100m"
+        memmory: "128Mi"
+      limits:  # hardlimit
+        cpu: "200m"
+        memory: "256Mi"
