@@ -1,11 +1,11 @@
 apiVersion: v1
 kind: Pod
 metadata:     
-  name:  simple-pod
+  name: simple-pod
   apiVersion: v1
   kind: Namespace
   metadata:
-    name:  sample-pod
+    name: sample-pod
     namespace: roboshop
   spec:
     containers:
