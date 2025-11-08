@@ -10,7 +10,7 @@ spec:
     - ReadWriteMany
   persistentVolumeReclaimPolicy: Retain
   nfs:
-    server: fs-01a7e107b9c30d8bf.efs.us-east-1.amazonaws.com
+    server: fs-010b9efcc4616802a.efs.us-east-1.amazonaws.com
     path: "/"
 ---
 apiVersion: v1
