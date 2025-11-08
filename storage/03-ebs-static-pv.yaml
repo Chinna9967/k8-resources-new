@@ -26,20 +26,35 @@ spec:
   storageClassName: ""  # used in dynamic provisioning
   volumeName: static-ebs-pv
 ---
-apiVersion: v1
-kind: Pod
+apiVersion: apps/v1
+kind: Deployment
 metadata:
-  name: ebs-test-pod
+  name: nginx-deployment
+  labels: # these labels belong to deployment
+    app: nginx
 spec:
-  containers:
-    - name: app
-      image: nginx
-      ports:
-      - containerPort: 80
-      volumeMounts:
-        - name: nginxhtml
-          mountPath: "/usr/share/nginx/html"
-  volumes:
-    - name: nginxhtml
-      persistentVolumeClaim:
-        claimName: static-ebs-pvc
+  replicas: 1
+  selector:
+    matchLabels: # these labels should match with pod
+      app: nginx
+      project: roboshop
+      component: frontend
+  template: # this is the pod definition
+    metadata:
+      labels:
+        app: nginx
+        project: roboshop
+        component: frontend
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:1.14.2
+        ports:
+        - containerPort: 80
+        volumeMounts:
+        - mountPath: "/usr/share/nginx/html"
+          name: nginx-html
+      volumes:
+      - name: nginx-html
+        persistentVolumeClaim: # this is the PVC
+          claimName: static-ebs-pvc
