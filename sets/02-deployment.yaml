@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-deployment
+  labels: # deployment labels
+    app: myapp
+spec:
+  replicas: 3
+  selector:
+    matchLabels:  # these labels shpuld match with pod labels
+      app: myapp
+      project: roboshop
+      component: frontend
+  template:
+    metadata:
+      labels:
+        app: myapp
+        project: roboshop
+        component: frontend
+    spec:
+      containers:
+      - name: my-container
+        image: nginx:latest
+        ports:
+        - containerPort: 80
