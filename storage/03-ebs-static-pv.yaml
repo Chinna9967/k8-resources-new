@@ -10,7 +10,7 @@ spec:
     - ReadWriteOnce
   storageClassName: ""  # used in dynamic provisioning
   awsElasticBlockStore:
-    volumeID: aws://us-east-1a/<VOLUME-ID>
+    volumeID: vol-0aab723e666b585ef
     fsType: ext4
 ---
 apiVersion: v1
